@@ -1,7 +1,9 @@
 .Carousel {
-  --carouselSlideMarginRight: 1.5rem;
+  --carouselSlidePaddingRight: 1.5rem;
+  --carouselSlideOutOfFocusOpacity: 0.1;
+  --carouselAnimationDuration: 500ms;
 
-  background-color: aquamarine;
+  // background-color: aquamarine;
   width: 100%;
   position: relative;
 
@@ -9,7 +11,7 @@
     // background-color: cadetblue;
     flex: 1;
     display: flex;
-    padding: 0 1rem;
+    padding: 1rem;
     cursor: pointer;
     position: absolute;
     top: 50%;

@@ -14,22 +14,21 @@ const CarouselSlide: React.FC<Props> = ({
   children,
   slideIndex,
 }) => {
-  const { classes, slidesPerRow, slidesToScroll, selectedIndex } =
-    useCarouselContext();
-
-  console.log('-'.repeat(50));
-  console.log('slideIndex', slideIndex);
-  console.log('selectedIndex', selectedIndex);
-  console.log('slidesPerRow', slidesPerRow);
-  console.log('slidesToScroll', slidesToScroll);
+  const { classes, slidesPerRow, selectedIndex } = useCarouselContext();
 
   return (
     <div
-      className={clsx(styles['CarouselSlide'], className, classes?.slide, {
-        [styles['CarouselSlide--invisible']]:
-          slideIndex >= selectedIndex + slidesPerRow ||
-          slideIndex < selectedIndex,
-      })}
+      className={clsx(
+        'CarouselSlide',
+        styles['CarouselSlide'],
+        className,
+        classes?.slide,
+        {
+          [styles['CarouselSlide--outOfFocus']]:
+            slideIndex >= selectedIndex + slidesPerRow ||
+            slideIndex < selectedIndex,
+        }
+      )}
     >
       {children}
     </div>

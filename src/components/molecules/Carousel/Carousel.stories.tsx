@@ -58,6 +58,38 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
       <div>5 Lorem Ipsum</div>
       <div>5 Lorem Ipsum</div>
     </Card>
+    <Card>
+      <div>6 Lorem Ipsum</div>
+      <div>6 Lorem Ipsum</div>
+      <div>6 Lorem Ipsum</div>
+      <div>6 Lorem Ipsum</div>
+      <div>6 Lorem Ipsum</div>
+      <div>6 Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>7 Lorem Ipsum</div>
+      <div>7 Lorem Ipsum</div>
+      <div>7 Lorem Ipsum</div>
+      <div>7 Lorem Ipsum</div>
+      <div>7 Lorem Ipsum</div>
+      <div>7 Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>88888 Lorem Ipsum</div>
+      <div>88888 Lorem Ipsum</div>
+      <div>88888 Lorem Ipsum</div>
+      <div>88888 Lorem Ipsum</div>
+      <div>88888 Lorem Ipsum</div>
+      <div>88888 Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>999999999999 Lorem Ipsum</div>
+      <div>999999999999 Lorem Ipsum</div>
+      <div>999999999999 Lorem Ipsum</div>
+      <div>999999999999 Lorem Ipsum</div>
+      <div>999999999999 Lorem Ipsum</div>
+      <div>999999999999 Lorem Ipsum</div>
+    </Card>
   </Carousel>
 );
 

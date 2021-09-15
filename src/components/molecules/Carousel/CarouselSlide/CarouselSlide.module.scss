@@ -1,9 +1,11 @@
 .CarouselSlide {
+  transition: opacity 500ms;
+
   &:not(:last-of-type) {
-    margin-right: var(--carouselSlideMarginRight);
+    padding-right: var(--carouselSlidePaddingRight);
   }
 
-  &--invisible {
-    opacity: 0;
+  &--outOfFocus {
+    opacity: var(--carouselSlideOutOfFocusOpacity);
   }
 }

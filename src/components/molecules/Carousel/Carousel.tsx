@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 
 import CaretLeftIcon from 'icons/caret-left.svg';
@@ -38,29 +38,70 @@ const Carousel: FC<Props> = ({
   slidesPerRow,
   slidesToScroll = 1,
 }) => {
+  const carouselRef = useRef<HTMLDivElement>();
+  const trackRef = useRef<HTMLDivElement>();
   const [selectedIndex, setSelectedIndex] = useState<number>(initialSlide);
+  const [trackPosition, setTrackPosition] = useState<number>(0);
   const totalNumberOfSlides = React.Children.count(children);
 
   const showArrowLeft = selectedIndex > 0;
-  const showArrowRight = selectedIndex + slidesToScroll <= totalNumberOfSlides;
+  const showArrowRight = selectedIndex + slidesToScroll < totalNumberOfSlides;
 
   const handleNext = () => {
+    const arrow =
+      carouselRef.current.getElementsByClassName('Carousel__arrow')[0];
+
+    const itemsToShift = Array.from(
+      trackRef.current.getElementsByClassName('CarouselSlide')
+    ).slice(selectedIndex, selectedIndex + slidesToScroll);
+
+    const amountToShift = itemsToShift
+      .map((item) => item.clientWidth)
+      .reduce((prev, curr) => prev + curr, 0);
+
+    setTrackPosition((prevPosition) =>
+      prevPosition === 0
+        ? (arrow?.clientWidth || 0) - amountToShift
+        : prevPosition - amountToShift
+    );
+
     const nextSlideIndex = Math.min(
       selectedIndex + slidesToScroll,
-      totalNumberOfSlides - 1
+      totalNumberOfSlides
     );
     setSelectedIndex(nextSlideIndex);
     onNext && onNext(nextSlideIndex);
   };
 
   const handlePrev = () => {
+    const arrow =
+      carouselRef.current.getElementsByClassName('Carousel__arrow')[0];
+
+    const itemsToShift = Array.from(
+      trackRef.current.getElementsByClassName('CarouselSlide')
+    ).slice(selectedIndex - slidesToScroll, selectedIndex);
+
+    const amountToShift = itemsToShift
+      .map((item) => item.clientWidth)
+      .reduce((prev, curr) => prev + curr, 0);
+
     const prevSlideIndex = Math.max(selectedIndex - slidesToScroll, 0);
+
+    setTrackPosition((prevPosition) =>
+      prevSlideIndex === 0
+        ? prevPosition + amountToShift - (arrow?.clientWidth || 0)
+        : prevPosition + amountToShift
+    );
+
     setSelectedIndex(prevSlideIndex);
     onPrev && onPrev(prevSlideIndex);
   };
 
   return (
-    <div className={clsx(styles['Carousel'], className, classes?.container)}>
+    <div
+      ref={carouselRef}
+      className={clsx(styles['Carousel'], className, classes?.container)}
+    >
       <CarouselContext.Provider
         value={{
           classes,
@@ -70,9 +111,11 @@ const Carousel: FC<Props> = ({
           slidesToScroll,
           selectedIndex,
           setSelectedIndex,
+          setTrackPosition,
           showArrowLeft,
           showArrowRight,
           totalNumberOfSlides,
+          trackPosition,
         }}
       >
         {showArrowLeft && (
@@ -80,6 +123,7 @@ const Carousel: FC<Props> = ({
             role="button"
             onClick={handlePrev}
             className={clsx(
+              'Carousel__arrow',
               styles['Carousel__arrow'],
               styles['Carousel__arrow--left'],
               classes?.arrow
@@ -88,7 +132,7 @@ const Carousel: FC<Props> = ({
             <ArrowLeft />
           </div>
         )}
-        <CarouselTrack>
+        <CarouselTrack ref={trackRef} position={trackPosition}>
           {React.Children.map(children, (child, slideIndex) => (
             <CarouselSlide slideIndex={slideIndex}>{child}</CarouselSlide>
           ))}
@@ -98,6 +142,7 @@ const Carousel: FC<Props> = ({
             role="button"
             onClick={handleNext}
             className={clsx(
+              'Carousel__arrow',
               styles['Carousel__arrow'],
               styles['Carousel__arrow--right'],
               classes?.arrow
