@@ -19,44 +19,44 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
     {...args}
   >
     <Card>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
+      <div>1 Lorem Ipsum</div>
+      <div>1 Lorem Ipsum</div>
+      <div>1 Lorem Ipsum</div>
+      <div>1 Lorem Ipsum</div>
+      <div>1 Lorem Ipsum</div>
+      <div>1 Lorem Ipsum</div>
     </Card>
     <Card>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
+      <div>2 Lorem Ipsum</div>
+      <div>2 Lorem Ipsum</div>
+      <div>2 Lorem Ipsum</div>
+      <div>2 Lorem Ipsum</div>
+      <div>2 Lorem Ipsum</div>
+      <div>2 Lorem Ipsum</div>
     </Card>
     <Card>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
+      <div>3 Lorem Ipsum</div>
+      <div>3 Lorem Ipsum</div>
+      <div>3 Lorem Ipsum</div>
+      <div>3 Lorem Ipsum</div>
+      <div>3 Lorem Ipsum</div>
+      <div>3 Lorem Ipsum</div>
     </Card>
     <Card>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
+      <div>4 Lorem Ipsum</div>
+      <div>4 Lorem Ipsum</div>
+      <div>4 Lorem Ipsum</div>
+      <div>4 Lorem Ipsum</div>
+      <div>4 Lorem Ipsum</div>
+      <div>4 Lorem Ipsum</div>
     </Card>
     <Card>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
-      <div>Lorem Ipsum</div>
+      <div>5 Lorem Ipsum</div>
+      <div>5 Lorem Ipsum</div>
+      <div>5 Lorem Ipsum</div>
+      <div>5 Lorem Ipsum</div>
+      <div>5 Lorem Ipsum</div>
+      <div>5 Lorem Ipsum</div>
     </Card>
   </Carousel>
 );
@@ -64,4 +64,5 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   slidesPerRow: 4,
+  slidesToScroll: 1,
 };

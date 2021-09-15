@@ -20,6 +20,8 @@ export interface Props {
   classes?: CarouselClasses;
   className?: string;
   initialSlide?: number;
+  onNext?: (slideIndex: number) => void;
+  onPrev?: (slideIndex: number) => void;
   slidesPerRow: number;
   slidesToScroll?: number;
 }
@@ -27,26 +29,43 @@ export interface Props {
 const Carousel: FC<Props> = ({
   className,
   children,
-  arrowLeft = () => <Icon svg={CaretLeftIcon} />,
-  arrowRight = () => <Icon svg={CaretRightIcon} />,
+  arrowLeft: ArrowLeft = () => <Icon svg={CaretLeftIcon} />,
+  arrowRight: ArrowRight = () => <Icon svg={CaretRightIcon} />,
   classes,
   initialSlide = 0,
+  onNext,
+  onPrev,
   slidesPerRow,
   slidesToScroll = 1,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(initialSlide);
   const totalNumberOfSlides = React.Children.count(children);
-  const showArrowLeft =
-    totalNumberOfSlides > slidesPerRow && selectedIndex !== 0;
-  const showArrowRight =
-    totalNumberOfSlides > slidesPerRow &&
-    selectedIndex + 1 !== totalNumberOfSlides;
+
+  const showArrowLeft = selectedIndex > 0;
+  const showArrowRight = selectedIndex + slidesToScroll <= totalNumberOfSlides;
+
+  const handleNext = () => {
+    const nextSlideIndex = Math.min(
+      selectedIndex + slidesToScroll,
+      totalNumberOfSlides - 1
+    );
+    setSelectedIndex(nextSlideIndex);
+    onNext && onNext(nextSlideIndex);
+  };
+
+  const handlePrev = () => {
+    const prevSlideIndex = Math.max(selectedIndex - slidesToScroll, 0);
+    setSelectedIndex(prevSlideIndex);
+    onPrev && onPrev(prevSlideIndex);
+  };
 
   return (
     <div className={clsx(styles['Carousel'], className, classes?.container)}>
       <CarouselContext.Provider
         value={{
           classes,
+          handleNext,
+          handlePrev,
           slidesPerRow,
           slidesToScroll,
           selectedIndex,
@@ -56,11 +75,37 @@ const Carousel: FC<Props> = ({
           totalNumberOfSlides,
         }}
       >
-        <CarouselTrack arrowLeft={arrowLeft} arrowRight={arrowRight}>
+        {showArrowLeft && (
+          <div
+            role="button"
+            onClick={handlePrev}
+            className={clsx(
+              styles['Carousel__arrow'],
+              styles['Carousel__arrow--left'],
+              classes?.arrow
+            )}
+          >
+            <ArrowLeft />
+          </div>
+        )}
+        <CarouselTrack>
           {React.Children.map(children, (child, slideIndex) => (
             <CarouselSlide slideIndex={slideIndex}>{child}</CarouselSlide>
           ))}
         </CarouselTrack>
+        {showArrowRight && (
+          <div
+            role="button"
+            onClick={handleNext}
+            className={clsx(
+              styles['Carousel__arrow'],
+              styles['Carousel__arrow--right'],
+              classes?.arrow
+            )}
+          >
+            <ArrowRight />
+          </div>
+        )}
       </CarouselContext.Provider>
     </div>
   );

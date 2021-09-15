@@ -1,6 +1,29 @@
 .Carousel {
   --carouselSlideMarginRight: 1.5rem;
 
-  width: 100%;
   background-color: aquamarine;
+  width: 100%;
+  position: relative;
+
+  &__arrow {
+    // background-color: cadetblue;
+    flex: 1;
+    display: flex;
+    padding: 0 1rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    &--left {
+      justify-content: flex-start;
+      left: 0;
+    }
+
+    &--right {
+      justify-content: flex-end;
+      right: 0;
+    }
+  }
 }
