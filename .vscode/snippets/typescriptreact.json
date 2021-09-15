@@ -1,0 +1,34 @@
+{
+  "console": {
+    "prefix": "console",
+    "body": "console.log('$1', $1);$2"
+  },
+  "reactIndex": {
+    "prefix": "reactIndex",
+    "body": ["import $1 from './$1';", "", "export default $1;", ""]
+  },
+  "reactComponent": {
+    "prefix": "reactComponent",
+    "body": [
+      "import React from 'react';",
+      "import clsx from 'clsx';",
+      "",
+      "import styles from './$1.module.scss';",
+      "",
+      "export interface Props {",
+      "  className?: string;",
+      "}",
+      "",
+      "const $1: React.FC<Props> = ({ className }) => {",
+      "  return (",
+      "    <div className={clsx(styles['$1'], className)}>",
+      "      <div>$1</div>",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default $1;",
+      ""
+    ]
+  }
+}
