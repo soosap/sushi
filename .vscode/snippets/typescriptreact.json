@@ -3,9 +3,19 @@
     "prefix": "console",
     "body": "console.log('$1', $1);$2"
   },
-  "reactIndex": {
-    "prefix": "reactIndex",
+  "reactIndexComponent": {
+    "prefix": "reactIndexComponent",
     "body": ["import $1 from './$1';", "", "export default $1;", ""]
+  },
+  "reactIndexContext": {
+    "prefix": "reactIndexContext",
+    "body": [
+      "import $1Context from './$1Context';",
+      "export { use$1Context } from './$1Context';",
+      "",
+      "export default $1Context;",
+      ""
+    ]
   },
   "reactComponent": {
     "prefix": "reactComponent",
@@ -28,6 +38,25 @@
       "};",
       "",
       "export default $1;",
+      ""
+    ]
+  },
+  "reactContext": {
+    "prefix": "reactContext",
+    "body": [
+      "import React, { useContext } from 'react';",
+      "",
+      "interface $1Context {",
+      "  selectedIndex: number;",
+      "}",
+      "",
+      "const $1Context = React.createContext<$1Context>({",
+      "  selectedIndex: 0,",
+      "});",
+      "",
+      "export const use$1Context = () => useContext($1Context);",
+      "",
+      "export default $1Context;",
       ""
     ]
   }

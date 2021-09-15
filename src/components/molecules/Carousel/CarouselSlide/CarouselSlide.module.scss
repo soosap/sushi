@@ -1,0 +1,9 @@
+.CarouselSlide {
+  &:not(:last-of-type) {
+    margin-right: var(--carouselSlideMarginRight);
+  }
+
+  &--invisible {
+    display: none;
+  }
+}

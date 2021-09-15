@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CaretLeftIcon from 'icons/caret-left.svg';
 import CaretRightIcon from 'icons/caret-right.svg';
 import Icon from 'atoms/Icon';
+import Card from 'molecules/Card';
 import Carousel from './Carousel';
 
 export default {
@@ -17,9 +18,50 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
     arrowRight={() => <Icon svg={CaretRightIcon} />}
     {...args}
   >
-    hello
+    <Card>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+    </Card>
+    <Card>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+      <div>Lorem Ipsum</div>
+    </Card>
   </Carousel>
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  slidesPerRow: 4,
+};
