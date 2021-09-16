@@ -4,15 +4,11 @@ import clsx from 'clsx';
 import CaretLeftIcon from 'icons/caret-left.svg';
 import CaretRightIcon from 'icons/caret-right.svg';
 import Icon from 'atoms/Icon';
-import CarouselTrack, { CarouselTrackProps } from './CarouselTrack';
+import CarouselTrack from './CarouselTrack';
 import CarouselSlide from './CarouselSlide';
 import CarouselContext from './CarouselContext';
 import { CarouselClasses } from '.';
 import styles from './Carousel.module.scss';
-
-interface FC<P = {}> extends React.FC<P> {
-  Track: React.FC<CarouselTrackProps>;
-}
 
 export interface Props {
   arrowLeft?: React.FC;
@@ -26,7 +22,7 @@ export interface Props {
   slidesToScroll?: number;
 }
 
-const Carousel: FC<Props> = ({
+const Carousel: React.FC<Props> = ({
   className,
   children,
   arrowLeft: ArrowLeft = () => <Icon svg={CaretLeftIcon} />,
@@ -38,8 +34,8 @@ const Carousel: FC<Props> = ({
   slidesPerRow,
   slidesToScroll = 1,
 }) => {
-  const carouselRef = useRef<HTMLDivElement>();
-  const trackRef = useRef<HTMLDivElement>();
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(initialSlide);
   const [trackPosition, setTrackPosition] = useState<number>(0);
   const totalNumberOfSlides = React.Children.count(children);
@@ -155,7 +151,5 @@ const Carousel: FC<Props> = ({
     </div>
   );
 };
-
-Carousel.Track = CarouselTrack;
 
 export default Carousel;

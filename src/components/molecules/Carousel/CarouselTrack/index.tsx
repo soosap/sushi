@@ -1,4 +1,3 @@
-import CarouselTrack, { Props } from './CarouselTrack';
+import CarouselTrack from './CarouselTrack';
 
-export { Props as CarouselTrackProps };
 export default CarouselTrack;

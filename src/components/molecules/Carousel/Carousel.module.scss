@@ -2,6 +2,7 @@
   --carouselSlidePaddingRight: 1.5rem;
   --carouselSlideOutOfFocusOpacity: 0.1;
   --carouselAnimationDuration: 500ms;
+  --carouselArrowPadding: 2rem;
 
   width: 100%;
   position: relative;
@@ -10,7 +11,7 @@
   &__arrow {
     flex: 1;
     display: flex;
-    padding: 1rem;
+    padding: 0;
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -20,11 +21,13 @@
     &--left {
       justify-content: flex-start;
       left: 0;
+      padding-right: var(--carouselArrowPadding);
     }
 
     &--right {
       justify-content: flex-end;
       right: 0;
+      padding-left: var(--carouselArrowPadding);
     }
   }
 }
