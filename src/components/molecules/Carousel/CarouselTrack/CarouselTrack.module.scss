@@ -1,8 +1,12 @@
 .CarouselTrack {
   // background-color: antiquewhite;
-  display: flex;
-  align-items: center;
+
   width: 100%;
   height: 100%;
   transition: all var(--carouselAnimationDuration);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
 }

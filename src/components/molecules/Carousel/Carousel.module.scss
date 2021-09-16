@@ -3,12 +3,11 @@
   --carouselSlideOutOfFocusOpacity: 0.1;
   --carouselAnimationDuration: 500ms;
 
-  // background-color: aquamarine;
   width: 100%;
   position: relative;
+  overflow-x: hidden;
 
   &__arrow {
-    // background-color: cadetblue;
     flex: 1;
     display: flex;
     padding: 1rem;
