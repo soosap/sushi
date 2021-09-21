@@ -1,0 +1,6 @@
+{
+  "reactComponentTypes": {
+    "prefix": "reactComponentTypes",
+    "body": ["export interface $1Classes {", "  container?: string;", "}", ""]
+  }
+}

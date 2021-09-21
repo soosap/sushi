@@ -3,12 +3,43 @@
     "prefix": "console",
     "body": "console.log('$1', $1);$2"
   },
-  "reactIndexComponent": {
-    "prefix": "reactIndexComponent",
-    "body": ["import $1 from './$1';", "", "export default $1;", ""]
+  "reactComponentStories": {
+    "prefix": "reactComponentStories",
+    "body": [
+      "import React from 'react';",
+      "import { ComponentStory, ComponentMeta } from '@storybook/react';",
+      "",
+      "import $1 from './$1';",
+      "",
+      "export default {",
+      "  title: '$2/$1',",
+      "  component: $1,",
+      "} as ComponentMeta<typeof $1>;",
+      "",
+      "const Template: ComponentStory<typeof $1> = (args) => {",
+      "  return (",
+      "    <$1 {...args} />",
+      "  );",
+      "}",
+      "",
+      "export const Primary = Template.bind({});",
+      "Primary.args = {",
+      "};",
+      ""
+    ]
   },
-  "reactIndexContext": {
-    "prefix": "reactIndexContext",
+  "reactComponentIndex": {
+    "prefix": "reactComponentIndex",
+    "body": [
+      "import $1 from './$1';",
+      "export * from './$1.d';",
+      "",
+      "export default $1;",
+      ""
+    ]
+  },
+  "reactContextIndex": {
+    "prefix": "reactContextIndex",
     "body": [
       "import $1Context from './$1Context';",
       "export { use$1Context } from './$1Context';",
@@ -23,15 +54,17 @@
       "import React from 'react';",
       "import clsx from 'clsx';",
       "",
+      "import { $1Classes } from './$1.d';",
       "import styles from './$1.module.scss';",
       "",
       "export interface Props {",
       "  className?: string;",
+      "  classes?: $1Classes;",
       "}",
       "",
-      "const $1: React.FC<Props> = ({ className }) => {",
+      "const $1: React.FC<Props> = ({ className, classes }) => {",
       "  return (",
-      "    <div className={clsx(styles['$1'], className)}>",
+      "    <div className={clsx(styles['$1'], classes?.container, className)}>",
       "      <div>$1</div>",
       "    </div>",
       "  );",

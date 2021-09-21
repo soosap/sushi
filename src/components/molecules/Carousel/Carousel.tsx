@@ -7,7 +7,7 @@ import Icon from 'atoms/Icon';
 import CarouselTrack from './CarouselTrack';
 import CarouselSlide from './CarouselSlide';
 import CarouselContext from './CarouselContext';
-import { CarouselClasses } from '.';
+import { CarouselClasses } from './Carousel.d';
 import styles from './Carousel.module.scss';
 
 export interface Props {
