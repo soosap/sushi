@@ -99,8 +99,6 @@ const Panel: FC<Props> = ({
           })
         : initialClasses;
 
-    console.log('dynamicClasses', dynamicClasses);
-
     setClasses(dynamicClasses);
   }, [panelNameRecord, selectedPanelIndex]);
 
@@ -122,7 +120,7 @@ const Panel: FC<Props> = ({
           setSelectedTabIndexRecord,
         }}
       >
-        {/* {panelItemPropsWhereHasNavigationItem.length && (
+        {panelItemPropsWhereHasNavigationItem.length && (
           <PanelNavigation>
             {panelItemProps.map((panelItem, index) => {
               const isPanelSelected = index === selectedPanelIndex;
@@ -142,9 +140,9 @@ const Panel: FC<Props> = ({
               ) : null;
             })}
           </PanelNavigation>
-        )} */}
+        )}
         {/* <div className={styles['Panel__items']}>{panelItems}</div> */}
-        <div className={styles['Panel__items']}>Hello</div>
+        {/* <div className={styles['Panel__items']}>Hello</div> */}
       </PanelContext.Provider>
     </div>
   );

@@ -1,0 +1,15 @@
+:root {
+  --greyLight: #e0e2e5;
+  --grey: #a4abb3;
+  --greyDark: #707174;
+  --white: #ffffff;
+  --black: #000000;
+
+  --borderColor: var(--greyLight);
+
+  --fontFamily: 'Roboto', serif;
+}
+
+body {
+  font-family: var(--fontFamily);
+}

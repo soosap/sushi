@@ -1,0 +1,41 @@
+.PanelNavigationItem {
+  --panelNavigationItemMarginFallback: 0;
+  --panelNavigationItemPaddingFallback: 2rem 1.5rem;
+
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  scroll-snap-align: start;
+
+  padding: var(
+    --panelNavigationItemPadding,
+    var(--panelNavigationItemPaddingFallback)
+  );
+
+  margin: var(
+    --panelNavigationItemMargin,
+    var(--panelNavigationItemMarginFallback)
+  );
+
+  // background-color: var(
+  //   --panelBackgroundColor,
+  //   var(--panelBackgroundColorFallback)
+  // );
+
+  &--disabled {
+    cursor: default;
+  }
+
+  &:not(:last-of-type) {
+    border-right: 1px solid
+      var(--panelBorderColor, var(--panelBorderColorFallback));
+  }
+
+  // &__verticalLineEraser {
+  //   &--top {
+  //   }
+  //   &--bottom {
+  //   }
+  // }
+}

@@ -49,7 +49,7 @@ const PanelWithCarouselTemplate: ComponentStory<typeof Panel> = (args) => {
           tab: styles['MyPanel__firstPanelTab'],
         })}
         navigationItem={({ isPanelSelected }) => (
-          <div>First Panel: {isPanelSelected}</div>
+          <div>First Panel: {isPanelSelected ? 'yes' : 'no'}</div>
         )}
       >
         <Panel.Tab
@@ -68,7 +68,12 @@ const PanelWithCarouselTemplate: ComponentStory<typeof Panel> = (args) => {
         </Panel.Tab>
       </Panel.Tabs>
 
-      <Panel.Tabs name="secondPanel">
+      <Panel.Tabs
+        name="secondPanel"
+        navigationItem={({ isPanelSelected }) => (
+          <div>Second Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+        )}
+      >
         <Panel.Tab
           name="secondPanelFirstTab"
           label={({ isTabSelected }) => (
@@ -94,11 +99,93 @@ const PanelWithCarouselTemplate: ComponentStory<typeof Panel> = (args) => {
           tab: styles['MyPanel__thirdPanelTab'],
         })}
         navigationItem={({ isPanelSelected }) => (
-          <div>Item B: {isPanelSelected}</div>
+          <div>Third Panel: {isPanelSelected ? 'yes' : 'no'}</div>
         )}
       >
         Third Panel
       </Panel.Item>
+
+      <Panel.Item
+        name="fourthPanel"
+        classes={({ isPanelSelected }) => ({
+          navigationItem: isPanelSelected && styles['MyPanel__fourthPanel'],
+          tab: styles['MyPanel__fourthPanelTab'],
+        })}
+      >
+        Fourth Panel
+      </Panel.Item>
+
+      <Panel.Tabs
+        name="fifthPanel"
+        navigationItem={({ isPanelSelected }) => (
+          <div>Fifth Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+        )}
+      >
+        <Panel.Tab
+          name="fifthPanelFirstTab"
+          label={({ isTabSelected }) => (
+            <div>Panel Label 3: {isTabSelected}</div>
+          )}
+        >
+          Fifth Panel | First Tab
+        </Panel.Tab>
+        <Panel.Tab
+          name="fifthPanelSecondTab"
+          label={({ isTabSelected }) => (
+            <div>Panel Label 4: {isTabSelected}</div>
+          )}
+        >
+          Fifth Panel | Second Tab
+        </Panel.Tab>
+      </Panel.Tabs>
+
+      <Panel.Tabs
+        name="sixthPanel"
+        navigationItem={({ isPanelSelected }) => (
+          <div>Sixth Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+        )}
+      >
+        <Panel.Tab
+          name="sixthPanelFirstTab"
+          label={({ isTabSelected }) => (
+            <div>Panel Label 3: {isTabSelected}</div>
+          )}
+        >
+          Sixth Panel | First Tab
+        </Panel.Tab>
+        <Panel.Tab
+          name="sixthPanelSecondTab"
+          label={({ isTabSelected }) => (
+            <div>Panel Label 4: {isTabSelected}</div>
+          )}
+        >
+          Sixth Panel | Second Tab
+        </Panel.Tab>
+      </Panel.Tabs>
+
+      <Panel.Tabs
+        name="seventhPanel"
+        navigationItem={({ isPanelSelected }) => (
+          <div>Seventh Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+        )}
+      >
+        <Panel.Tab
+          name="seventhPanelFirstTab"
+          label={({ isTabSelected }) => (
+            <div>Panel Label 3: {isTabSelected}</div>
+          )}
+        >
+          Seventh Panel | First Tab
+        </Panel.Tab>
+        <Panel.Tab
+          name="seventhPanelSecondTab"
+          label={({ isTabSelected }) => (
+            <div>Panel Label 4: {isTabSelected}</div>
+          )}
+        >
+          Seventh Panel | Second Tab
+        </Panel.Tab>
+      </Panel.Tabs>
     </Panel>
   );
 };

@@ -1,0 +1,67 @@
+.PanelNavigation {
+  --panelNavigationArrowWidthFallback: 1.5rem;
+  --panelNavigationArrowOpacityFallback: 0.5;
+  --panelNavigationArrowDisabledOpacityFallback: 0.1;
+
+  position: relative;
+  border: 1px solid var(--panelBorderColor, var(--panelBorderColorFallback));
+
+  &__track {
+    display: flex;
+    background-color: var(
+      --panelBackgroundColor,
+      var(--panelBackgroundColorFallback)
+    );
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    &--scrollable {
+      margin: 0
+        var(
+          --panelNavigationArrowWidth,
+          var(--panelNavigationArrowWidthFallback)
+        );
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: var(--greyLight);
+    opacity: var(
+      --panelNavigationArrowOpacity,
+      var(--panelNavigationArrowOpacityFallback)
+    );
+    cursor: pointer;
+    width: var(
+      --panelNavigationArrowWidth,
+      var(--panelNavigationArrowWidthFallback)
+    );
+    transition: opacity 300ms;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &--disabled {
+      cursor: default;
+      opacity: var(
+        --panelNavigationArrowDisabledOpacity,
+        var(--panelNavigationArrowDisabledOpacityFallback)
+      );
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}

@@ -6,11 +6,14 @@ import styles from './PanelNavigationItem.module.scss';
 
 export interface Props {
   className?: string;
+  disabled?: boolean;
   isPanelSelected: boolean;
 }
 
 const PanelNavigationItem: React.FC<Props> = ({
+  children,
   className,
+  disabled = false,
   isPanelSelected,
 }) => {
   const { classes } = usePanelContext();
@@ -20,10 +23,17 @@ const PanelNavigationItem: React.FC<Props> = ({
       className={clsx(
         styles['PanelNavigationItem'],
         classes?.navigationItem,
-        className
+        className,
+        { [styles['PanelNavigationItem--disabled']]: disabled }
       )}
     >
-      <div>PanelNavigationItem: {isPanelSelected}</div>
+      {children}
+      <div
+        role="button"
+        className={clsx(styles['PanelNavigationItem__clickableArea'], {
+          [styles['PanelNavigationItem__clickableArea--disabled']]: disabled,
+        })}
+      />
     </div>
   );
 };
