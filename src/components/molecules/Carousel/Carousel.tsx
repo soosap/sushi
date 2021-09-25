@@ -95,8 +95,8 @@ const Carousel: React.FC<Props> = ({
 
   return (
     <div
-      ref={carouselRef}
       className={clsx(styles['Carousel'], className, classes?.container)}
+      ref={carouselRef}
     >
       <CarouselContext.Provider
         value={{

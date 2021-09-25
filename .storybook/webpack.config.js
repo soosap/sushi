@@ -34,7 +34,7 @@ module.exports = ({ config }) => {
   });
 
   config.module.rules.push({
-    test: /\.(ts|tsx)$/,
+    test: /(?<!\.d)\.tsx?$/,
     use: ['ts-loader'],
     exclude: /node_modules/,
   });
