@@ -1,10 +1,16 @@
 .PanelNavigation {
   --panelNavigationArrowWidthFallback: 1.5rem;
-  --panelNavigationArrowOpacityFallback: 0.5;
-  --panelNavigationArrowDisabledOpacityFallback: 0.1;
+  --panelNavigationArrowBackgroundFallback: var(--greyLight50);
+  --panelNavigationArrowBackgroundDisabledFallback: var(--greyLight10);
 
   position: relative;
-  border: 1px solid var(--panelBorderColor, var(--panelBorderColorFallback));
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   &__track {
     display: flex;
@@ -14,8 +20,11 @@
     );
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    border-right: 1px solid
+      var(--panelBorderColor, var(--panelBorderColorFallback));
 
     &--scrollable {
+      border-right: none;
       margin: 0
         var(
           --panelNavigationArrowWidth,
@@ -32,17 +41,18 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
-    background-color: var(--greyLight);
-    opacity: var(
-      --panelNavigationArrowOpacity,
-      var(--panelNavigationArrowOpacityFallback)
+    background: var(
+      --panelNavigationArrowBackground,
+      var(--panelNavigationArrowBackgroundFallback)
     );
     cursor: pointer;
     width: var(
       --panelNavigationArrowWidth,
       var(--panelNavigationArrowWidthFallback)
     );
-    transition: opacity 300ms;
+    border: 1px solid var(--panelBorderColor, var(--panelBorderColorFallback));
+    transition: background 300ms;
+    box-sizing: border-box;
 
     &--left {
       left: 0;
@@ -54,10 +64,14 @@
 
     &--disabled {
       cursor: default;
-      opacity: var(
-        --panelNavigationArrowDisabledOpacity,
-        var(--panelNavigationArrowDisabledOpacityFallback)
+      background: var(
+        --panelNavigationArrowBackgroundDisabled,
+        var(--panelNavigationArrowBackgroundDisabledFallback)
       );
+
+      svg {
+        opacity: 0.2;
+      }
     }
 
     &--hidden {

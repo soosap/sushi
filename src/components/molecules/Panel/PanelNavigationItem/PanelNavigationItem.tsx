@@ -21,19 +21,17 @@ const PanelNavigationItem: React.FC<Props> = ({
   return (
     <div
       className={clsx(
+        'PanelNavigationItem',
         styles['PanelNavigationItem'],
         classes?.navigationItem,
         className,
-        { [styles['PanelNavigationItem--disabled']]: disabled }
+        {
+          [styles['PanelNavigationItem--disabled']]: disabled,
+          [styles['PanelNavigationItem--active']]: isPanelSelected,
+        }
       )}
     >
       {children}
-      <div
-        role="button"
-        className={clsx(styles['PanelNavigationItem__clickableArea'], {
-          [styles['PanelNavigationItem__clickableArea--disabled']]: disabled,
-        })}
-      />
     </div>
   );
 };

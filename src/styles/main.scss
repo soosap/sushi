@@ -1,5 +1,7 @@
 :root {
   --greyLight: #e0e2e5;
+  --greyLight10: rgba(224, 226, 229, 0.1);
+  --greyLight50: rgba(224, 226, 229, 0.5);
   --grey: #a4abb3;
   --greyDark: #707174;
   --white: #ffffff;
@@ -12,4 +14,8 @@
 
 body {
   font-family: var(--fontFamily);
+}
+
+* {
+  box-sizing: border-box;
 }

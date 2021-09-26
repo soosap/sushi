@@ -15,16 +15,64 @@ export interface Props {
 const PanelNavigation: React.FC<Props> = ({ children, className }) => {
   const { classes } = usePanelContext();
   const trackRef = useRef<HTMLDivElement>();
-  const [showArrowLeft, setShowArrowLeft] = useState<boolean>(false);
-  const [showArrowRight, setShowArrowRight] = useState<boolean>(false);
+  const [arrowLeftEnabled, setArrowLeftEnabled] = useState<boolean>(false);
+  const [arrowRightEnabled, setArrowRightEnabled] = useState<boolean>(false);
 
   const handleScroll = throttle(100, () => {
-    setShowArrowLeft(trackRef.current.scrollLeft > 0);
-    setShowArrowRight(
+    setArrowLeftEnabled(trackRef.current.scrollLeft > 0);
+    setArrowRightEnabled(
       trackRef.current.scrollWidth - trackRef.current.scrollLeft >
         trackRef.current.clientWidth
     );
   });
+
+  const handleLeftArrowClick = () => {
+    if (arrowLeftEnabled) {
+      const navigationItems = trackRef.current.getElementsByClassName(
+        'PanelNavigationItem'
+      );
+
+      let itemToMove: Element;
+      Array.from(navigationItems).reduce((prev, curr) => {
+        if (prev - curr.clientWidth > 0) {
+          // not the one to move
+          return prev - curr.clientWidth;
+        } else if (!itemToMove) {
+          itemToMove = curr;
+        }
+      }, trackRef.current.scrollLeft);
+
+      trackRef.current.scrollTo({
+        left: trackRef.current.scrollLeft - itemToMove.clientWidth,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handleRightArrowClick = () => {
+    if (arrowRightEnabled) {
+      const navigationItems = trackRef.current.getElementsByClassName(
+        'PanelNavigationItem'
+      );
+
+      let itemToMove: Element;
+      Array.from(navigationItems)
+        .reverse()
+        .reduce((prev, curr) => {
+          if (prev - curr.clientWidth > 0) {
+            // not the one to move
+            return prev - curr.clientWidth;
+          } else if (!itemToMove) {
+            itemToMove = curr;
+          }
+        }, trackRef.current.scrollLeft);
+
+      trackRef.current.scrollTo({
+        left: trackRef.current.scrollLeft + itemToMove.clientWidth,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   useEffect(() => {
     window.addEventListener('resize', handleScroll);
@@ -46,18 +94,20 @@ const PanelNavigation: React.FC<Props> = ({ children, className }) => {
         ref={trackRef}
         className={clsx(styles['PanelNavigation__track'], {
           [styles['PanelNavigation__track--scrollable']]:
-            showArrowLeft || showArrowRight,
+            arrowLeftEnabled || arrowRightEnabled,
         })}
         onScroll={handleScroll}
       >
         <div
+          role="button"
+          onClick={handleLeftArrowClick}
           className={clsx(
             styles['PanelNavigation__arrow'],
             styles['PanelNavigation__arrow--left'],
             {
-              [styles['PanelNavigation__arrow--disabled']]: !showArrowLeft,
+              [styles['PanelNavigation__arrow--disabled']]: !arrowLeftEnabled,
               [styles['PanelNavigation__arrow--hidden']]:
-                !showArrowLeft && !showArrowRight,
+                !arrowLeftEnabled && !arrowRightEnabled,
             }
           )}
         >
@@ -66,13 +116,15 @@ const PanelNavigation: React.FC<Props> = ({ children, className }) => {
         {children}
       </div>
       <div
+        role="button"
+        onClick={handleRightArrowClick}
         className={clsx(
           styles['PanelNavigation__arrow'],
           styles['PanelNavigation__arrow--right'],
           {
-            [styles['PanelNavigation__arrow--disabled']]: !showArrowRight,
+            [styles['PanelNavigation__arrow--disabled']]: !arrowRightEnabled,
             [styles['PanelNavigation__arrow--hidden']]:
-              !showArrowLeft && !showArrowRight,
+              !arrowLeftEnabled && !arrowRightEnabled,
           }
         )}
       >
