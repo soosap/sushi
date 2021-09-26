@@ -8,6 +8,7 @@ export interface Props {
   className?: string;
   disabled?: boolean;
   isPanelSelected: boolean;
+  panelIndex: number;
 }
 
 const PanelNavigationItem: React.FC<Props> = ({
@@ -15,11 +16,18 @@ const PanelNavigationItem: React.FC<Props> = ({
   className,
   disabled = false,
   isPanelSelected,
+  panelIndex,
 }) => {
-  const { classes } = usePanelContext();
+  const { classes, setSelectedPanelIndex } = usePanelContext();
+
+  const handleClick = () => {
+    setSelectedPanelIndex(panelIndex);
+  };
 
   return (
     <div
+      role="button"
+      onClick={handleClick}
       className={clsx(
         'PanelNavigationItem',
         styles['PanelNavigationItem'],

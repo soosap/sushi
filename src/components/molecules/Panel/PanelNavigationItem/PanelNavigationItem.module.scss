@@ -23,10 +23,9 @@
   border-left: none;
   box-sizing: border-box;
 
-  // background-color: var(
-  //   --panelBackgroundColor,
-  //   var(--panelBackgroundColorFallback)
-  // );
+  &:last-of-type {
+    border-right: none;
+  }
 
   &--disabled {
     cursor: default;
@@ -38,10 +37,14 @@
         --panelNavigationItemActiveBorderColor,
         var(--panelNavigationItemActiveBorderColorFallback)
       );
-  }
 
-  &:last-of-type {
-    border-right: none;
+    &:last-of-type {
+      border-right: 1px solid
+        var(
+          --panelNavigationItemActiveBorderColor,
+          var(--panelNavigationItemActiveBorderColorFallback)
+        );
+    }
   }
 
   // &__verticalLineEraser {

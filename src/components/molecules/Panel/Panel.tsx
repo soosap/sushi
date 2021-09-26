@@ -56,8 +56,6 @@ const Panel: FC<Props> = ({
     (tab) => React.isValidElement(tab) && tab.props
   );
 
-  console.log('panelItems', panelItemProps);
-
   const panelItemPropsWhereHasNavigationItem = panelItemProps.filter(
     (panelItem) => panelItem.navigationItem
   );
@@ -134,6 +132,7 @@ const Panel: FC<Props> = ({
                   className={clsx(panelItemClasses?.navigationItem)}
                   isPanelSelected={isPanelSelected}
                   key={index}
+                  panelIndex={index}
                 >
                   {panelItem.navigationItem({ isPanelSelected })}
                 </PanelNavigationItem>
