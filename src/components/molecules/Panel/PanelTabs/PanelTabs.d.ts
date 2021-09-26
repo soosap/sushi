@@ -2,5 +2,5 @@ import { PanelClasses } from '../Panel.d';
 
 export type PanelTabsClasses = Omit<
   PanelClasses,
-  'container' | 'navigation' | 'item'
+  'carousel' | 'container' | 'navigation' | 'item'
 >;

@@ -1,0 +1,22 @@
+.PanelCarousel {
+  --panelCarouselSlideMarginFallback: 1rem;
+
+  position: relative;
+
+  &__track {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: scroll;
+  }
+
+  &__slide {
+    margin-right: var(
+      --panelCarouselSlideMargin,
+      var(--panelCarouselSlideMarginFallback)
+    );
+  }
+}

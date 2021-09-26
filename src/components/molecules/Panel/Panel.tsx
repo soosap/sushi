@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import PanelContext from './PanelContext';
+import PanelCarousel from './PanelCarousel';
 import PanelNavigation from './PanelNavigation';
 import PanelNavigationItem from './PanelNavigationItem';
 import PanelItem, { PanelItemProps } from './PanelItem';
@@ -69,6 +70,8 @@ const Panel: FC<Props> = ({
             [index]: curr.initiallySelectedTabIndex,
           };
         }
+
+        return prev;
       },
       {} as Record<number, number>
     );
@@ -140,8 +143,18 @@ const Panel: FC<Props> = ({
             })}
           </PanelNavigation>
         )}
-        {/* <div className={styles['Panel__items']}>{panelItems}</div> */}
-        {/* <div className={styles['Panel__items']}>Hello</div> */}
+        <div
+          className={clsx(
+            styles['Panel__items'],
+            styles[`Panel__items--${type}`]
+          )}
+        >
+          {type === PanelType.PLAIN ? (
+            panelItems[selectedPanelIndex]
+          ) : type === PanelType.CAROUSEL ? (
+            <PanelCarousel>{panelItems}</PanelCarousel>
+          ) : null}
+        </div>
       </PanelContext.Provider>
     </div>
   );

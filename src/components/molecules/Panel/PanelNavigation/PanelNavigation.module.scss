@@ -22,9 +22,12 @@
     scroll-snap-type: x mandatory;
     border-right: 1px solid
       var(--panelBorderColor, var(--panelBorderColorFallback));
+    border-left: 1px solid
+      var(--panelBorderColor, var(--panelBorderColorFallback));
 
     &--scrollable {
       border-right: none;
+      border-left: none;
       margin: 0
         var(
           --panelNavigationArrowWidth,

@@ -38,7 +38,11 @@ const PanelTabs: React.FC<Props> = ({
     (tab) => React.isValidElement(tab) && tab.props
   );
 
-  const selectedTabIndex = selectedTabIndexRecord[panelIndex];
+  console.log('selectedTabIndexRecord', selectedTabIndexRecord);
+  console.log('panelIndex', panelIndex);
+
+  const selectedTabIndex = selectedTabIndexRecord?.[panelIndex];
+  console.log('selectedTabIndex', selectedTabIndex);
 
   useEffect(() => {
     const dynamicClasses =
@@ -51,6 +55,8 @@ const PanelTabs: React.FC<Props> = ({
     setPanelTabsClasses(dynamicClasses);
   }, [panelIndex, selectedPanelIndex]);
 
+  if (selectedTabIndex === undefined) return null;
+
   return (
     <div
       className={clsx(
@@ -61,11 +67,11 @@ const PanelTabs: React.FC<Props> = ({
       )}
     >
       <PanelTabsContext.Provider value={{ classes: panelTabsClasses }}>
-        <div className={styles['PanelTabs__header']}>
+        {/* <div className={styles['PanelTabs__header']}>
           {tabsProps.map((tabProps, index) =>
             tabProps.label({ isTabSelected: index === selectedTabIndex })
           )}
-        </div>
+        </div> */}
         <div className={styles['PanelTabs__body']}>{children}</div>
       </PanelTabsContext.Provider>
     </div>

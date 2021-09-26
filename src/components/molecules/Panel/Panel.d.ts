@@ -1,4 +1,5 @@
 export interface PanelClasses {
+  carousel?: string;
   container?: string;
   navigation?: string;
   navigationItem?: string;
