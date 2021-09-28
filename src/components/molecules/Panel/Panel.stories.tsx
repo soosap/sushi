@@ -8,189 +8,159 @@ import styles from './Panel.module.scss';
 export default {
   title: 'molecules/Panel',
   component: Panel,
+  argTypes: {
+    type: {
+      control: {
+        type: 'select',
+        options: [PanelType.PLAIN, PanelType.CAROUSEL],
+      },
+    },
+  },
 } as ComponentMeta<typeof Panel>;
 
-// const PanelWithTabsTemplate: ComponentStory<typeof Panel> = (args) => {
-//   return (
-//     <Panel {...args}>
-//       <Panel.Tab label={({ selected }) => <div>Panel Label 1: {selected}</div>}>
-//         Hi there 1
-//       </Panel.Tab>
-//       <Panel.Tab label={({ selected }) => <div>Panel Label 2: {selected}</div>}>
-//         Hi there 2
-//       </Panel.Tab>
-//     </Panel>
-//   );
-// };
+const Template: ComponentStory<typeof Panel> = (args) => (
+  <Panel
+    classes={({ selectedPanelName }) => ({
+      container: clsx(
+        styles['MyPanel__container'],
+        styles[`MyPanel__container--${selectedPanelName}`]
+      ),
+      navigation: styles['MyPanel__navigation'],
+    })}
+    {...args}
+  >
+    <Panel.Tabs
+      name="firstPanel"
+      activeClassName={styles['MyPanel__firstPanel--active']}
+      className={styles['MyPanel__firstPanel']}
+      classes={({ isPanelSelected }) => ({
+        navigationItem: isPanelSelected && styles['MyPanel__firstPanel'],
+        tab: styles['MyPanel__firstPanelTab'],
+      })}
+      navigationItem={({ isPanelSelected }) => (
+        <div>First Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+      )}
+    >
+      <Panel.Tab
+        name="firstPanelFirstTab"
+        label={({ isTabSelected }) => <div>First Label: {isTabSelected}</div>}
+      >
+        First Panel | First Tab
+      </Panel.Tab>
+      <Panel.Tab
+        name="firstPanelSecondTab"
+        label={({ isTabSelected }) => <div>Second Label: {isTabSelected}</div>}
+      >
+        First Panel | Second Tab
+      </Panel.Tab>
+    </Panel.Tabs>
 
-// export const Tabs = PanelWithTabsTemplate.bind({});
-// PanelWithTabsTemplate.args = {
-//   type: PanelType.PLAIN,
-// };
+    <Panel.Tabs
+      name="secondPanel"
+      navigationItem={({ isPanelSelected }) => (
+        <div>Second Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+      )}
+    >
+      <Panel.Tab
+        name="secondPanelFirstTab"
+        label={({ isTabSelected }) => <div>Panel Label 3: {isTabSelected}</div>}
+      >
+        Second Panel | First Tab
+      </Panel.Tab>
+      <Panel.Tab
+        name="secondPanelSecondTab"
+        label={({ isTabSelected }) => <div>Panel Label 4: {isTabSelected}</div>}
+      >
+        Second Panel | Second Tab
+      </Panel.Tab>
+    </Panel.Tabs>
 
-const PanelWithCarouselTemplate: ComponentStory<typeof Panel> = (args) => {
-  return (
-    <Panel
-      {...args}
-      classes={({ selectedPanelName }) => ({
-        container: clsx(
-          styles['MyPanel__container'],
-          styles[`MyPanel__container--${selectedPanelName}`]
-        ),
-        navigation: styles['MyPanel__navigation'],
+    <Panel.Item
+      name="thirdPanel"
+      classes={({ isPanelSelected }) => ({
+        navigationItem: isPanelSelected && styles['MyPanel__thirdPanel'],
+        tab: styles['MyPanel__thirdPanelTab'],
+      })}
+      navigationItem={({ isPanelSelected }) => (
+        <div>Third Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+      )}
+    >
+      Third Panel
+    </Panel.Item>
+
+    <Panel.Item
+      name="fourthPanel"
+      classes={({ isPanelSelected }) => ({
+        navigationItem: isPanelSelected && styles['MyPanel__fourthPanel'],
+        tab: styles['MyPanel__fourthPanelTab'],
       })}
     >
-      <Panel.Tabs
-        name="firstPanel"
-        activeClassName={styles['MyPanel__firstPanel--active']}
-        className={styles['MyPanel__firstPanel']}
-        classes={({ isPanelSelected }) => ({
-          navigationItem: isPanelSelected && styles['MyPanel__firstPanel'],
-          tab: styles['MyPanel__firstPanelTab'],
-        })}
-        navigationItem={({ isPanelSelected }) => (
-          <div>First Panel: {isPanelSelected ? 'yes' : 'no'}</div>
-        )}
-      >
-        <Panel.Tab
-          name="firstPanelFirstTab"
-          label={({ isTabSelected }) => <div>First Label: {isTabSelected}</div>}
-        >
-          First Panel | First Tab
-        </Panel.Tab>
-        <Panel.Tab
-          name="firstPanelSecondTab"
-          label={({ isTabSelected }) => (
-            <div>Second Label: {isTabSelected}</div>
-          )}
-        >
-          First Panel | Second Tab
-        </Panel.Tab>
-      </Panel.Tabs>
+      Fourth Panel
+    </Panel.Item>
 
-      <Panel.Tabs
-        name="secondPanel"
-        navigationItem={({ isPanelSelected }) => (
-          <div>Second Panel: {isPanelSelected ? 'yes' : 'no'}</div>
-        )}
+    <Panel.Tabs
+      name="fifthPanel"
+      navigationItem={({ isPanelSelected }) => (
+        <div>Fifth Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+      )}
+    >
+      <Panel.Tab
+        name="fifthPanelFirstTab"
+        label={({ isTabSelected }) => <div>Panel Label 3: {isTabSelected}</div>}
       >
-        <Panel.Tab
-          name="secondPanelFirstTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 3: {isTabSelected}</div>
-          )}
-        >
-          Second Panel | First Tab
-        </Panel.Tab>
-        <Panel.Tab
-          name="secondPanelSecondTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 4: {isTabSelected}</div>
-          )}
-        >
-          Second Panel | Second Tab
-        </Panel.Tab>
-      </Panel.Tabs>
-
-      <Panel.Item
-        name="thirdPanel"
-        classes={({ isPanelSelected }) => ({
-          navigationItem: isPanelSelected && styles['MyPanel__thirdPanel'],
-          tab: styles['MyPanel__thirdPanelTab'],
-        })}
-        navigationItem={({ isPanelSelected }) => (
-          <div>Third Panel: {isPanelSelected ? 'yes' : 'no'}</div>
-        )}
+        Fifth Panel | First Tab
+      </Panel.Tab>
+      <Panel.Tab
+        name="fifthPanelSecondTab"
+        label={({ isTabSelected }) => <div>Panel Label 4: {isTabSelected}</div>}
       >
-        Third Panel
-      </Panel.Item>
+        Fifth Panel | Second Tab
+      </Panel.Tab>
+    </Panel.Tabs>
 
-      <Panel.Item
-        name="fourthPanel"
-        classes={({ isPanelSelected }) => ({
-          navigationItem: isPanelSelected && styles['MyPanel__fourthPanel'],
-          tab: styles['MyPanel__fourthPanelTab'],
-        })}
+    <Panel.Tabs
+      name="sixthPanel"
+      navigationItem={({ isPanelSelected }) => (
+        <div>Sixth Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+      )}
+    >
+      <Panel.Tab
+        name="sixthPanelFirstTab"
+        label={({ isTabSelected }) => <div>Panel Label 3: {isTabSelected}</div>}
       >
-        Fourth Panel
-      </Panel.Item>
-
-      <Panel.Tabs
-        name="fifthPanel"
-        navigationItem={({ isPanelSelected }) => (
-          <div>Fifth Panel: {isPanelSelected ? 'yes' : 'no'}</div>
-        )}
+        Sixth Panel | First Tab
+      </Panel.Tab>
+      <Panel.Tab
+        name="sixthPanelSecondTab"
+        label={({ isTabSelected }) => <div>Panel Label 4: {isTabSelected}</div>}
       >
-        <Panel.Tab
-          name="fifthPanelFirstTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 3: {isTabSelected}</div>
-          )}
-        >
-          Fifth Panel | First Tab
-        </Panel.Tab>
-        <Panel.Tab
-          name="fifthPanelSecondTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 4: {isTabSelected}</div>
-          )}
-        >
-          Fifth Panel | Second Tab
-        </Panel.Tab>
-      </Panel.Tabs>
+        Sixth Panel | Second Tab
+      </Panel.Tab>
+    </Panel.Tabs>
 
-      <Panel.Tabs
-        name="sixthPanel"
-        navigationItem={({ isPanelSelected }) => (
-          <div>Sixth Panel: {isPanelSelected ? 'yes' : 'no'}</div>
-        )}
+    <Panel.Tabs
+      name="seventhPanel"
+      navigationItem={({ isPanelSelected }) => (
+        <div>Seventh Panel: {isPanelSelected ? 'yes' : 'no'}</div>
+      )}
+    >
+      <Panel.Tab
+        name="seventhPanelFirstTab"
+        label={({ isTabSelected }) => <div>Panel Label 3: {isTabSelected}</div>}
       >
-        <Panel.Tab
-          name="sixthPanelFirstTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 3: {isTabSelected}</div>
-          )}
-        >
-          Sixth Panel | First Tab
-        </Panel.Tab>
-        <Panel.Tab
-          name="sixthPanelSecondTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 4: {isTabSelected}</div>
-          )}
-        >
-          Sixth Panel | Second Tab
-        </Panel.Tab>
-      </Panel.Tabs>
-
-      <Panel.Tabs
-        name="seventhPanel"
-        navigationItem={({ isPanelSelected }) => (
-          <div>Seventh Panel: {isPanelSelected ? 'yes' : 'no'}</div>
-        )}
+        Seventh Panel | First Tab
+      </Panel.Tab>
+      <Panel.Tab
+        name="seventhPanelSecondTab"
+        label={({ isTabSelected }) => <div>Panel Label 4: {isTabSelected}</div>}
       >
-        <Panel.Tab
-          name="seventhPanelFirstTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 3: {isTabSelected}</div>
-          )}
-        >
-          Seventh Panel | First Tab
-        </Panel.Tab>
-        <Panel.Tab
-          name="seventhPanelSecondTab"
-          label={({ isTabSelected }) => (
-            <div>Panel Label 4: {isTabSelected}</div>
-          )}
-        >
-          Seventh Panel | Second Tab
-        </Panel.Tab>
-      </Panel.Tabs>
-    </Panel>
-  );
-};
+        Seventh Panel | Second Tab
+      </Panel.Tab>
+    </Panel.Tabs>
+  </Panel>
+);
 
-export const Carousel = PanelWithCarouselTemplate.bind({});
-PanelWithCarouselTemplate.args = {
+export const Carousel = Template.bind({});
+Carousel.args = {
   type: PanelType.CAROUSEL,
 };

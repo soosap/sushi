@@ -1,12 +1,13 @@
 .PanelNavigation {
-  --panelNavigationArrowWidthFallback: 1.5rem;
-  --panelNavigationArrowBackgroundFallback: var(--greyLight50);
-  --panelNavigationArrowBackgroundDisabledFallback: var(--greyLight10);
+  --panelNavigationArrowWidth: 1.5rem;
+  --panelNavigationArrowBackground: var(--greyLight50);
+  --panelNavigationArrowDisabledBackground: var(--greyLight10);
+  --panelNavigationMarginBottom: 1rem;
 
   position: relative;
-
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  margin-bottom: var(--panelNavigationMarginBottom);
 
   ::-webkit-scrollbar {
     display: none;
@@ -14,25 +15,16 @@
 
   &__track {
     display: flex;
-    background-color: var(
-      --panelBackgroundColor,
-      var(--panelBackgroundColorFallback)
-    );
+    background-color: var(--panelBackgroundColor);
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
-    border-right: 1px solid
-      var(--panelBorderColor, var(--panelBorderColorFallback));
-    border-left: 1px solid
-      var(--panelBorderColor, var(--panelBorderColorFallback));
+    border-right: 1px solid var(--panelBorderColor);
+    border-left: 1px solid var(--panelBorderColor);
 
     &--scrollable {
       border-right: none;
       border-left: none;
-      margin: 0
-        var(
-          --panelNavigationArrowWidth,
-          var(--panelNavigationArrowWidthFallback)
-        );
+      margin: 0 var(--panelNavigationArrowWidth);
     }
   }
 
@@ -44,16 +36,10 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
-    background: var(
-      --panelNavigationArrowBackground,
-      var(--panelNavigationArrowBackgroundFallback)
-    );
+    background: var(--panelNavigationArrowBackground);
     cursor: pointer;
-    width: var(
-      --panelNavigationArrowWidth,
-      var(--panelNavigationArrowWidthFallback)
-    );
-    border: 1px solid var(--panelBorderColor, var(--panelBorderColorFallback));
+    width: var(--panelNavigationArrowWidth);
+    border: 1px solid var(--panelBorderColor);
     transition: background 300ms;
     box-sizing: border-box;
 
@@ -67,10 +53,7 @@
 
     &--disabled {
       cursor: default;
-      background: var(
-        --panelNavigationArrowBackgroundDisabled,
-        var(--panelNavigationArrowBackgroundDisabledFallback)
-      );
+      background: var(--panelNavigationArrowDisabledBackground);
 
       svg {
         opacity: 0.2;

@@ -1,25 +1,16 @@
 .PanelNavigationItem {
-  --panelNavigationItemMarginFallback: 0;
-  --panelNavigationItemPaddingFallback: 2rem 1.5rem;
-  --panelNavigationItemActiveBorderColorFallback: var(--black);
+  --PanelNavigationItemMargin: 0;
+  --panelNavigationItemPadding: 2rem 1.5rem;
+  --panelNavigationItemActiveBorder: 1px solid var(--black);
 
   flex: 1;
   position: relative;
   cursor: pointer;
   white-space: nowrap;
   scroll-snap-align: start;
-
-  padding: var(
-    --panelNavigationItemPadding,
-    var(--panelNavigationItemPaddingFallback)
-  );
-
-  margin: var(
-    --panelNavigationItemMargin,
-    var(--panelNavigationItemMarginFallback)
-  );
-
-  border: 1px solid var(--panelBorderColor, var(--panelBorderColorFallback));
+  padding: var(--panelNavigationItemPadding);
+  margin: var(--panelNavigationItemMargin);
+  border: 1px solid var(--panelBorderColor);
   border-left: none;
   box-sizing: border-box;
 
@@ -32,18 +23,10 @@
   }
 
   &--active {
-    border: 1px solid
-      var(
-        --panelNavigationItemActiveBorderColor,
-        var(--panelNavigationItemActiveBorderColorFallback)
-      );
+    border: var(--panelNavigationItemActiveBorder);
 
     &:last-of-type {
-      border-right: 1px solid
-        var(
-          --panelNavigationItemActiveBorderColor,
-          var(--panelNavigationItemActiveBorderColorFallback)
-        );
+      border-right: var(--panelNavigationItemActiveBorder);
     }
   }
 

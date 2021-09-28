@@ -1,10 +1,4 @@
 .Panel {
-  --panelBorderColorFallback: var(--borderColor);
-  --panelBackgroundColorFallback: var(--white);
+  --panelBackgroundColor: var(--white);
+  --panelBorderColor: var(--borderColor);
 }
-
-// .MyPanel {
-//   &__container {
-//     background-color: aquamarine;
-//   }
-// }
