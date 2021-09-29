@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import PanelContext from './PanelContext';
@@ -33,6 +33,8 @@ const Panel: FC<Props> = ({
   initiallySelectedIndex: initiallySelectedPanelIndex = 0,
   type = PanelType.PLAIN,
 }) => {
+  const navigationRef = useRef<HTMLDivElement>();
+
   const [selectedPanelIndex, setSelectedPanelIndex] = useState<number>(
     initiallySelectedPanelIndex
   );
@@ -59,6 +61,12 @@ const Panel: FC<Props> = ({
 
   const panelItemPropsWhereHasNavigationItem = panelItemProps.filter(
     (panelItem) => panelItem.navigationItem
+  );
+
+  const spaceBetween = Number(
+    navigationRef.current?.getElementsByClassName(
+      'PanelNavigation__spaceBetween'
+    )[0].clientWidth
   );
 
   useEffect(() => {
@@ -122,7 +130,7 @@ const Panel: FC<Props> = ({
         }}
       >
         {panelItemPropsWhereHasNavigationItem.length && (
-          <PanelNavigation>
+          <PanelNavigation ref={navigationRef}>
             {panelItemProps.map((panelItem, index) => {
               const isPanelSelected = index === selectedPanelIndex;
               const panelItemClasses =
@@ -152,7 +160,11 @@ const Panel: FC<Props> = ({
           {type === PanelType.PLAIN ? (
             panelItems[selectedPanelIndex]
           ) : type === PanelType.CAROUSEL ? (
-            <PanelCarousel>{panelItems}</PanelCarousel>
+            spaceBetween ? (
+              <PanelCarousel spaceBetween={spaceBetween}>
+                {panelItems}
+              </PanelCarousel>
+            ) : null
           ) : null}
         </div>
       </PanelContext.Provider>

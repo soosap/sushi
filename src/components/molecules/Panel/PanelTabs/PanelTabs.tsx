@@ -38,11 +38,7 @@ const PanelTabs: React.FC<Props> = ({
     (tab) => React.isValidElement(tab) && tab.props
   );
 
-  console.log('selectedTabIndexRecord', selectedTabIndexRecord);
-  console.log('panelIndex', panelIndex);
-
   const selectedTabIndex = selectedTabIndexRecord?.[panelIndex];
-  console.log('selectedTabIndex', selectedTabIndex);
 
   useEffect(() => {
     const dynamicClasses =

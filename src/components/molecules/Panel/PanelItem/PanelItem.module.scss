@@ -1,0 +1,6 @@
+.PanelItem {
+  --panelItemPadding: 1rem;
+
+  border: 1px solid var(--panelBorderColor);
+  padding: var(--panelItemPadding);
+}

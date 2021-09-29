@@ -5,12 +5,12 @@
   --panelNavigationMarginBottom: 1rem;
 
   position: relative;
+
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   margin-bottom: var(--panelNavigationMarginBottom);
-
   ::-webkit-scrollbar {
-    display: none;
+    display: none; /* Safari */
   }
 
   &__track {
@@ -63,5 +63,10 @@
     &--hidden {
       display: none;
     }
+  }
+
+  &__spaceBetween {
+    width: var(--panelCarouselSpaceBetween);
+    z-index: -1;
   }
 }

@@ -1,4 +1,16 @@
 .Panel {
   --panelBackgroundColor: var(--white);
   --panelBorderColor: var(--borderColor);
+  --panelMarginBottom: 2rem;
+  --panelCarouselSpaceBetween: 1rem;
+
+  margin-bottom: var(--panelMarginBottom);
+}
+
+.MyPanel {
+  &__container {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
