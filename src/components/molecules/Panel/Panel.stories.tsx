@@ -15,6 +15,13 @@ export default {
         options: [PanelType.PLAIN, PanelType.CAROUSEL],
       },
     },
+    initiallySelectedIndex: {
+      control: {
+        type: 'number',
+        defaultValue: 0,
+        description: 'Initially selected slide index',
+      },
+    },
   },
 } as ComponentMeta<typeof Panel>;
 

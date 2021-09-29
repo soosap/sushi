@@ -15,7 +15,8 @@ const PanelCarousel: React.FC<Props> = ({
   className,
   spaceBetween,
 }) => {
-  const { classes, selectedPanelIndex } = usePanelContext();
+  const { classes, selectedPanelIndex, setSelectedPanelIndex } =
+    usePanelContext();
   const carouselRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const PanelCarousel: React.FC<Props> = ({
         return (
           <div
             role="button"
+            onClick={() => delta !== 0 && setSelectedPanelIndex(index)}
             className={clsx(
               styles['PanelCarousel__slide'],
               'PanelCarousel__slide'
