@@ -21,11 +21,13 @@ const PanelNavigation = React.forwardRef<HTMLDivElement, Props>(
     const [arrowRightEnabled, setArrowRightEnabled] = useState<boolean>(false);
 
     const handleScroll = throttle(100, () => {
-      setArrowLeftEnabled(trackRef.current.scrollLeft > 0);
-      setArrowRightEnabled(
+      const leftEnabled = trackRef.current.scrollLeft > 0;
+      const rightEnabled =
         trackRef.current.scrollWidth - trackRef.current.scrollLeft >
-          trackRef.current.clientWidth
-      );
+        trackRef.current.clientWidth;
+
+      setArrowLeftEnabled(leftEnabled);
+      setArrowRightEnabled(rightEnabled);
     });
 
     const handleLeftArrowClick = () => {
@@ -81,7 +83,7 @@ const PanelNavigation = React.forwardRef<HTMLDivElement, Props>(
       return () => window.removeEventListener('resize', handleScroll);
     }, []);
 
-    useEffect(() => handleScroll(), []);
+    useEffect(handleScroll, []);
 
     return (
       <div

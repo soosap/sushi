@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import { usePanelContext } from '../PanelContext';
@@ -18,6 +18,11 @@ const PanelCarousel: React.FC<Props> = ({
   const { classes, selectedPanelIndex, setSelectedPanelIndex } =
     usePanelContext();
   const carouselRef = useRef<HTMLDivElement>();
+  const [slideWidth, setSlideWidth] = useState<number>();
+
+  const handleResize = () => {
+    setSlideWidth(carouselRef.current?.clientWidth);
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,6 +32,11 @@ const PanelCarousel: React.FC<Props> = ({
         elem.classList.add(styles['PanelCarousel__slide--transition'])
       );
     }, 1000);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -49,6 +59,7 @@ const PanelCarousel: React.FC<Props> = ({
             )}
             style={{
               left,
+              width: slideWidth ? slideWidth : 'inherit',
             }}
           >
             {delta < 2 ? child : null}
