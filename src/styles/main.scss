@@ -12,7 +12,9 @@
   --fontFamily: 'Roboto', serif;
 }
 
+html,
 body {
+  min-height: 100vh;
   font-family: var(--fontFamily);
   overflow-x: hidden;
 }

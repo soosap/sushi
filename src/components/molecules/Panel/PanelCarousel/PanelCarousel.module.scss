@@ -1,5 +1,7 @@
 .PanelCarousel {
-  position: relative;
+  &__track {
+    position: relative;
+  }
 
   &__slide {
     min-width: 100%;
